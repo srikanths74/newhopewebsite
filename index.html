@@ -54,14 +54,20 @@
   /* ABOUT */
   .about { background: var(--warm-white); }
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-  .about-image-placeholder { background: url("./media/logo.jpeg"); width: 80px; height: 80px; }
+  /* .about-image-placeholder { background: url("./media/logo.jpeg"); width: 80px; height: 80px; }
   .about-image-placeholder .big-cross { width: 80px; height: 80px; position: relative; opacity: 0.3; }
   .about-image-placeholder .big-cross::before, .about-image-placeholder .big-cross::after { content: ''; position: absolute; background: #fff; border-radius: 4px; }
   .about-image-placeholder .big-cross::before { width: 14px; height: 100%; left: 50%; transform: translateX(-50%); }
   .about-image-placeholder .big-cross::after { width: 100%; height: 14px; top: 30%; left: 0; }
   .about-image-placeholder .circle-deco { position: absolute; border-radius: 50%; border: 2px solid rgba(201,144,11,0.3); }
   .about-image-placeholder .circle-deco:nth-child(1) { width: 180px; height: 180px; bottom: -50px; right: -50px; }
-  .about-image-placeholder .circle-deco:nth-child(2) { width: 100px; height: 100px; top: -25px; left: -25px; }
+  .about-image-placeholder .circle-deco:nth-child(2) { width: 100px; height: 100px; top: -25px; left: -25px; } */
+  .about-image-placeholder { position: relative; display: flex; align-items: center; justify-content: center; min-height: 320px; }
+.logo-frame { width: 240px; height: 240px; border-radius: 50%; overflow: hidden; border: 5px solid var(--gold); box-shadow: 0 8px 40px rgba(201,144,11,0.18); z-index: 1; background: var(--warm-white); display: flex; align-items: center; justify-content: center; }
+.logo-frame img { width: 100%; height: 100%; object-fit: cover; }
+.circle-deco { position: absolute; border-radius: 50%; border: 2px solid rgba(201,144,11,0.3); pointer-events: none; }
+.circle-deco:nth-child(1) { width: 290px; height: 290px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.circle-deco:nth-child(2) { width: 340px; height: 340px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
   .values { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
   .value-item { display: flex; gap: 1rem; align-items: flex-start; }
   .value-dot { min-width: 10px; height: 10px; background: var(--gold); border-radius: 50%; margin-top: 6px; }
