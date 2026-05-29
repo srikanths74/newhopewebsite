@@ -310,7 +310,7 @@
 
 <footer>
   <div class="footer-logo">New Hope Church</div>
-  <p>© 2025 New Hope Church. All rights reserved. Made with faith &amp; love.</p>
+  <p>© 2026 New Hope Church. All rights reserved. Made with faith &amp; love.</p>
 </footer>
 
 <script>
@@ -331,6 +331,7 @@
       const d = cardData[m.id] || {};
       const media = d.media || [];
       const first = media[0];
+      
       let mediaHtml = `<span>${m.emoji}</span>`;
       if (first && first.type === 'image') mediaHtml = `<img src="${first.src}" alt="${m.name}" />`;
       else if (first && first.type === 'video') mediaHtml = `<video src="${first.src}" muted></video>`;
