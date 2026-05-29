@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Hope Church</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold: #C9900B; --gold-light: #F5E6C0; --cream: #FDF8F0;
+    --navy: #1A2A4A; --navy-mid: #2D4275; --warm-white: #FFFDF9;
+    --text-body: #3D3525; --text-muted: #7A6E5E;
+  }
+  body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--text-body); line-height: 1.6; overflow-x: hidden; }
+
+  nav { background: var(--navy); display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-logo .cross { width: 24px; height: 24px; position: relative; }
+  .nav-logo .cross::before, .nav-logo .cross::after { content: ''; position: absolute; background: var(--gold); border-radius: 2px; }
+  .nav-logo .cross::before { width: 4px; height: 100%; left: 50%; transform: translateX(-50%); }
+  .nav-logo .cross::after { width: 100%; height: 4px; top: 35%; left: 0; }
+  .nav-logo span { font-family: 'Playfair Display', serif; color: #fff; font-size: 1.1rem; font-weight: 700; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta { background: var(--gold); color: var(--navy); border: none; padding: 0.5rem 1.2rem; border-radius: 50px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
+
+  .hero { min-height: 70vh; background: linear-gradient(145deg, var(--navy) 0%, var(--navy-mid) 60%, #3a5f8a 100%); display: flex; align-items: center; justify-content: center; text-align: center; padding: 4rem 2rem; position: relative; overflow: hidden; }
+  .hero-bg-circle { position: absolute; border-radius: 50%; background: rgba(201,144,11,0.07); pointer-events: none; }
+  .hero-bg-circle:nth-child(1) { width: 500px; height: 500px; top: -180px; right: -180px; }
+  .hero-bg-circle:nth-child(2) { width: 350px; height: 350px; bottom: -130px; left: -80px; }
+  .hero-content { position: relative; z-index: 1; max-width: 700px; }
+  .hero-badge { display: inline-block; background: rgba(201,144,11,0.18); color: var(--gold-light); border: 1px solid rgba(201,144,11,0.4); font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 0.3rem 1rem; border-radius: 50px; margin-bottom: 1.2rem; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 1rem; }
+  .hero h1 span { color: var(--gold); }
+  .hero-subtitle { font-size: 1rem; color: rgba(255,255,255,0.75); max-width: 500px; margin: 0 auto 2rem; }
+  .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--gold); color: var(--navy); border: none; padding: 0.75rem 2rem; border-radius: 50px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.95rem; cursor: pointer; }
+  .btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.5); padding: 0.75rem 2rem; border-radius: 50px; font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 0.95rem; cursor: pointer; }
+
+  .service-strip { background: var(--gold); display: flex; justify-content: center; flex-wrap: wrap; }
+  .service-item { padding: 0.9rem 1.4rem; border-right: 1px solid rgba(26,42,74,0.2); text-align: center; }
+  .service-item:last-child { border-right: none; }
+  .service-item .day { font-size: 0.68rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--navy); opacity: 0.7; }
+  .service-item .time { font-size: 0.95rem; font-weight: 700; color: var(--navy); }
+
+  section { padding: 4rem 2rem; }
+  .section-tag { display: inline-block; color: var(--gold); font-size: 0.72rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 1rem; }
+  .section-body { font-size: 0.95rem; color: var(--text-muted); max-width: 560px; line-height: 1.8; }
+  .container { max-width: 1000px; margin: 0 auto; }
+
+  /* ABOUT */
+  .about { background: var(--warm-white); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .about-image-placeholder { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); border-radius: 20px; height: 320px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .about-image-placeholder .big-cross { width: 80px; height: 80px; position: relative; opacity: 0.3; }
+  .about-image-placeholder .big-cross::before, .about-image-placeholder .big-cross::after { content: ''; position: absolute; background: #fff; border-radius: 4px; }
+  .about-image-placeholder .big-cross::before { width: 14px; height: 100%; left: 50%; transform: translateX(-50%); }
+  .about-image-placeholder .big-cross::after { width: 100%; height: 14px; top: 30%; left: 0; }
+  .about-image-placeholder .circle-deco { position: absolute; border-radius: 50%; border: 2px solid rgba(201,144,11,0.3); }
+  .about-image-placeholder .circle-deco:nth-child(1) { width: 180px; height: 180px; bottom: -50px; right: -50px; }
+  .about-image-placeholder .circle-deco:nth-child(2) { width: 100px; height: 100px; top: -25px; left: -25px; }
+  .values { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+  .value-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .value-dot { min-width: 10px; height: 10px; background: var(--gold); border-radius: 50%; margin-top: 6px; }
+  .value-item strong { color: var(--navy); display: block; font-size: 0.92rem; }
+  .value-item span { font-size: 0.85rem; color: var(--text-muted); }
+
+  /* MINISTRIES */
+  .ministries { background: var(--cream); }
+  .ministries-header { text-align: center; margin-bottom: 2.5rem; }
+  .ministries-header .section-body { margin: 0 auto; }
+  .ministries-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.2rem; }
+  .ministry-card { background: var(--warm-white); border-radius: 16px; overflow: hidden; border: 1px solid rgba(201,144,11,0.15); transition: transform 0.2s, border-color 0.2s; }
+  .ministry-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+
+  .ministry-media { width: 100%; height: 160px; background: linear-gradient(135deg, var(--navy), var(--navy-mid)); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; position: relative; overflow: hidden; cursor: pointer; }
+  .ministry-media img, .ministry-media video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+  .media-count-badge { position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.6); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 3px 8px; border-radius: 20px; }
+
+  .ministry-body { padding: 1.2rem; }
+  .ministry-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--gold-light); display: flex; align-items: center; justify-content: center; margin-bottom: 0.8rem; font-size: 1.3rem; }
+  .ministry-card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--navy); font-weight: 700; margin-bottom: 0.4rem; }
+  .ministry-card p { font-size: 0.84rem; color: var(--text-muted); line-height: 1.7; min-height: 40px; }
+  .ministry-edit-btn { margin-top: 0.8rem; width: 100%; background: transparent; border: 1px solid rgba(26,42,74,0.2); border-radius: 8px; padding: 6px 0; font-size: 0.78rem; color: var(--text-muted); cursor: pointer; font-family: 'Nunito', sans-serif; display: flex; align-items: center; justify-content: center; gap: 6px; transition: background 0.2s, color 0.2s; }
+  .ministry-edit-btn:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+  /* MEDIA PANEL */
+  .media-panel-backdrop { display: none; background: rgba(26,42,74,0.08); border-radius: 16px; padding: 1.5rem; margin-top: 1.5rem; border: 1px solid rgba(201,144,11,0.2); }
+  .media-panel-backdrop.open { display: block; }
+  .panel-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; }
+  .panel-header h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--navy); font-weight: 700; }
+  .panel-close { background: none; border: none; font-size: 1.3rem; cursor: pointer; color: var(--text-muted); line-height: 1; }
+  .panel-close:hover { color: var(--navy); }
+
+  .upload-drop-zone { border: 2px dashed rgba(201,144,11,0.5); border-radius: 12px; padding: 2rem; text-align: center; cursor: pointer; background: var(--warm-white); transition: border-color 0.2s, background 0.2s; margin-bottom: 1.2rem; }
+  .upload-drop-zone:hover { border-color: var(--gold); background: var(--gold-light); }
+  .upload-drop-zone .upload-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .upload-drop-zone p { font-size: 0.88rem; color: var(--text-muted); margin: 0; }
+  .upload-drop-zone span { font-size: 0.75rem; color: #a89e8e; }
+
+  .thumbs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; margin-bottom: 1.2rem; }
+  .thumb-item { position: relative; border-radius: 10px; overflow: hidden; border: 1px solid rgba(201,144,11,0.2); }
+  .thumb-item img, .thumb-item video { width: 100%; height: 90px; object-fit: cover; display: block; }
+  .thumb-type { position: absolute; top: 5px; left: 5px; background: rgba(0,0,0,0.6); color: #fff; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; }
+  .thumb-del { position: absolute; top: 4px; right: 4px; background: rgba(0,0,0,0.55); border: none; border-radius: 50%; width: 22px; height: 22px; cursor: pointer; color: #fff; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; }
+  .thumb-del:hover { background: rgba(180,0,0,0.8); }
+
+  .desc-label { font-size: 0.8rem; font-weight: 700; color: var(--navy); margin-bottom: 0.4rem; display: block; }
+  .panel-textarea { width: 100%; padding: 0.7rem 0.9rem; border: 1px solid rgba(26,42,74,0.18); border-radius: 10px; font-family: 'Nunito', sans-serif; font-size: 0.88rem; color: var(--text-body); background: var(--warm-white); resize: vertical; min-height: 80px; margin-bottom: 1rem; }
+  .panel-textarea:focus { outline: none; border-color: var(--gold); }
+  .panel-actions { display: flex; gap: 0.8rem; align-items: center; }
+  .btn-save { background: var(--navy); color: #fff; border: none; padding: 0.6rem 1.8rem; border-radius: 50px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.88rem; cursor: pointer; }
+  .btn-save:hover { background: var(--navy-mid); }
+  .btn-cancel { background: transparent; border: 1px solid rgba(26,42,74,0.2); padding: 0.6rem 1.2rem; border-radius: 50px; font-family: 'Nunito', sans-serif; font-size: 0.88rem; color: var(--text-muted); cursor: pointer; }
+  .saved-msg { font-size: 0.82rem; color: #2a7a2a; font-weight: 700; display: none; }
+
+  EVENTS
+  .events { background: var(--navy); }
+  .events .section-tag { color: var(--gold); }
+  .events .section-title { color: #fff; }
+  .events .section-body { color: rgba(255,255,255,0.65); }
+  .events-header { margin-bottom: 2.5rem; }
+  .events-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
+  .event-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; overflow: hidden; }
+  .event-date-bar { background: var(--gold); padding: 0.5rem 1.1rem; font-size: 0.74rem; font-weight: 700; color: var(--navy); letter-spacing: 1.5px; text-transform: uppercase; }
+  .event-body { padding: 1.1rem 1.3rem; }
+  .event-body h3 { color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .event-body p { color: rgba(255,255,255,0.6); font-size: 0.82rem; line-height: 1.6; }
+  .event-meta { margin-top: 0.6rem; }
+  .event-meta span { font-size: 0.78rem; color: var(--gold); font-weight: 600; }
+
+  /* QUOTE */
+  .quote-section { background: var(--gold-light); text-align: center; padding: 4rem 2rem; }
+  .quote-mark { font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--gold); line-height: 0.5; margin-bottom: 1rem; opacity: 0.5; }
+  .quote-text { font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 2.5vw, 1.7rem); color: var(--navy); font-style: italic; max-width: 650px; margin: 0 auto 1rem; line-height: 1.5; }
+  .quote-ref { font-size: 0.88rem; color: var(--text-muted); font-weight: 600; }
+
+  /* CONNECT */
+  .connect { background: var(--warm-white); }
+  .connect-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .connect-form { display: flex; flex-direction: column; gap: 0.9rem; }
+  .connect-form input, .connect-form textarea { width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(26,42,74,0.18); border-radius: 10px; font-family: 'Nunito', sans-serif; font-size: 0.92rem; color: var(--text-body); background: var(--cream); outline: none; }
+  .connect-form input:focus, .connect-form textarea:focus { border-color: var(--gold); }
+  .connect-form textarea { min-height: 110px; resize: vertical; }
+  .connect-form button { align-self: flex-start; background: var(--navy); color: #fff; border: none; padding: 0.75rem 2rem; border-radius: 50px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.95rem; cursor: pointer; }
+  .connect-info { display: flex; flex-direction: column; gap: 1.3rem; margin-top: 0.5rem; }
+  .info-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .info-icon { min-width: 42px; height: 42px; border-radius: 12px; background: var(--gold-light); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+  .info-item strong { display: block; color: var(--navy); font-size: 0.88rem; margin-bottom: 2px; }
+  .info-item span { font-size: 0.84rem; color: var(--text-muted); }
+
+  footer { background: #0F1B33; color: rgba(255,255,255,0.55); text-align: center; padding: 2rem; font-size: 0.82rem; }
+  footer .footer-logo { font-family: 'Playfair Display', serif; color: #fff; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  @media (max-width: 650px) {
+    .nav-links { display: none; }
+    .about-grid, .connect-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="cross"></div>
+    <span>New Hope Church</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#ministries">Ministries</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#connect">Connect</a></li>
+  </ul>
+  <button class="nav-cta">Plan Your Visit</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-circle"></div>
+  <div class="hero-bg-circle"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Welcome To</div>
+    <h1>Find <span>Hope</span>,<br>Build Community</h1>
+    <p class="hero-subtitle">A vibrant, welcoming family where every person belongs. Join us as we grow together in faith, love, and purpose.</p>
+    <div class="hero-buttons">
+      <button class="btn-primary">Join Us Sunday</button>
+    </div>
+  </div>
+</section>
+
+<div class="service-strip">
+  <div class="service-item"><div class="day">Sunday Service</div><div class="time">8:30 AM – 11:00 AM</div></div>
+  <div class="service-item"><div class="day">Sunday Bible Class (SBC)</div><div class="time">3:00 PM – 5:00 PM</div></div>
+  <div class="service-item"><div class="day">Wednesday Youth Fellowship</div><div class="time">8:00 PM – 9:30 PM</div></div>
+  <div class="service-item"><div class="day">Friday Fasting Prayer</div><div class="time">10:00 AM – 12:00 PM</div></div>
+  <div class="service-item"><div class="day">Saturday Preparatory Prayer</div><div class="time">8:00 AM – 9:00 AM</div></div>
+</div>
+
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image-placeholder">
+        <div class="circle-deco"></div>
+        <div class="big-cross"></div>
+        <div class="circle-deco"></div>
+      </div>
+      <div>
+        <div class="section-tag">Our Story</div>
+        <h2 class="section-title">A Place to Belong, Believe &amp; Grow</h2>
+        <p class="section-body">New Hope Church has been a cornerstone of this community for over 11 years. We're not a perfect church — we're a community of imperfect people growing together in grace and truth.</p>
+        <div class="values">
+          <div class="value-item"><div class="value-dot"></div><div><strong>Radical Welcome</strong><span>Everyone — no matter your background — has a seat at our table.</span></div></div>
+          <div class="value-item"><div class="value-dot"></div><div><strong>Deep Roots</strong><span>Grounded in scripture, open to questions, honest about doubt.</span></div></div>
+          <div class="value-item"><div class="value-dot"></div><div><strong>Active Love</strong><span>Faith that moves into our neighborhood with generosity and justice.</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ministries" id="ministries">
+  <div class="container">
+    <div class="ministries-header">
+      <div class="section-tag">Get Involved</div>
+      <h2 class="section-title">Find Your Community</h2>
+      <p class="section-body">From children to seniors, there's a place for you to connect, serve, and grow.</p>
+    </div>
+    <div class="ministries-grid" id="ministriesGrid"></div>
+    <div class="media-panel-backdrop" id="mediaPanel">
+      <div class="panel-header">
+        <h3 id="panelMinistryName">Edit Ministry</h3>
+        <button class="panel-close" onclick="closePanel()">&#10005;</button>
+      </div>
+      <div class="upload-drop-zone" onclick="document.getElementById('mediaFileInput').click()">
+        <div class="upload-icon">&#128247;</div>
+        <p>Click to upload photos &amp; videos</p>
+        <span>JPG, PNG, GIF, MP4, MOV — you can select multiple files</span>
+      </div>
+      <input type="file" id="mediaFileInput" accept="image/*,video/*" multiple style="display:none" />
+      <div class="thumbs-grid" id="thumbsGrid"></div>
+      <label class="desc-label">Description</label>
+      <textarea class="panel-textarea" id="panelDesc" placeholder="Write a few words about this community…"></textarea>
+      <div class="panel-actions">
+        <button class="btn-cancel" onclick="closePanel()">Cancel</button>
+        <button class="btn-save" onclick="savePanel()">Save</button>
+        <span class="saved-msg" id="savedMsg">&#10003; Saved!</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="events" id="events">
+  <div class="container">
+    <div class="events-header">
+      <div class="section-tag">Upcoming</div>
+      <h2 class="section-title">Events &amp; Gatherings</h2>
+      <p class="section-body">Come as you are, leave transformed.</p>
+    </div>
+    <div class="events-grid">
+      <div class="event-card"><div class="event-date-bar">June 1, 2025</div><div class="event-body"><h3>Annual Church Picnic</h3><p>A day of food, fun, and fellowship for the whole family.</p><div class="event-meta"><span>10:00 AM – 3:00 PM</span></div></div></div>
+      <div class="event-card"><div class="event-date-bar">June 8, 2025</div><div class="event-body"><h3>Youth Camp Registration</h3><p>Sign up your teens for our summer discipleship camp.</p><div class="event-meta"><span>After Sunday Service</span></div></div></div>
+      <div class="event-card"><div class="event-date-bar">June 15, 2025</div><div class="event-body"><h3>Community Food Drive</h3><p>Help us bless our neighbors — bring non-perishable items.</p><div class="event-meta"><span>9:00 AM – 1:00 PM</span></div></div></div>
+      <div class="event-card"><div class="event-date-bar">June 22, 2025</div><div class="event-body"><h3>Worship Night</h3><p>An evening of praise, prayer, and the presence of God.</p><div class="event-meta"><span>6:30 PM – 9:00 PM</span></div></div></div>
+    </div> -->
+  <!-- </div>
+</section> -->
+
+<div class="quote-section">
+  <div class="quote-mark">"</div>
+  <p class="quote-text">For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.</p>
+  <div class="quote-ref">Jeremiah 29:11</div>
+</div>
+
+<section class="connect" id="connect">
+  <div class="container">
+    <div class="connect-grid">
+      <div>
+        <div class="section-tag">Get in Touch</div>
+        <h2 class="section-title">We'd Love to Hear from You</h2>
+        <p class="section-body" style="margin-bottom:1.5rem">Have a question or want to know more? Reach out and we'll get back to you.</p>
+        <div class="connect-form">
+          <input type="text" placeholder="Your Name" />
+          <input type="number" placeholder="Your Number" />
+          <textarea placeholder="Your message…"></textarea>
+          <button>Send Message</button>
+        </div>
+      </div>
+      <div class="connect-info">
+        <div class="info-item"><div class="info-icon">📍</div><div><strong>Address</strong><span>7, Annai Theresa St, Devanesan Nagar, New Perungalathur, Chennai, Tamil Nadu 600063</span></div></div>
+        <div class="info-item"><div class="info-icon">📞</div><div><strong>Phone</strong><span>+91 98840 49797</span></div></div>
+        <!-- <div class="info-item"><div class="info-icon">✉️</div><div><strong>Email</strong><span>hello@newhopechurch.org</span></div></div>
+        <div class="info-item"><div class="info-icon">🕐</div><div><strong>Office Hours</strong><span>Mon – Fri, 9:00 AM – 5:00 PM</span></div></div> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">New Hope Church</div>
+  <p>© 2025 New Hope Church. All rights reserved. Made with faith &amp; love.</p>
+</footer>
+
+<script>
+  const ministries = [
+    { id: 'children', emoji: '👶', name: "Children's Ministry", defaultDesc: "Worship, snacks, faith-filled experiences for kids ages 0–17 during every service." },
+    { id: 'youth',    emoji: '🔥', name: "Youth Fellowship",    defaultDesc: "An energetic community where youths discover God's word, identity, purpose, and friendship." },
+    { id: 'worship',  emoji: '🎵', name: "Worship Arts",        defaultDesc: "Express your gifts through music, creative arts, and technical production." },
+    { id: 'outreach', emoji: '🤝', name: "Community Outreach",  defaultDesc: "Serving our city through food drives, mentorship, and local partnerships." }
+  ];
+
+  let cardData = {};
+  let editingId = null;
+  let pendingMedia = [];
+
+  function renderGrid() {
+    const grid = document.getElementById('ministriesGrid');
+    grid.innerHTML = ministries.map(m => {
+      const d = cardData[m.id] || {};
+      const media = d.media || [];
+      const first = media[0];
+      let mediaHtml = `<span>${m.emoji}</span>`;
+      if (first && first.type === 'image') mediaHtml = `<img src="${first.src}" alt="${m.name}" />`;
+      else if (first && first.type === 'video') mediaHtml = `<video src="${first.src}" muted></video>`;
+      const badge = media.length > 0 ? `<span class="media-count-badge">${media.length} file${media.length > 1 ? 's' : ''}</span>` : '';
+      return `
+        <div class="ministry-card">
+          <div class="ministry-media" onclick="openPanel('${m.id}')">${mediaHtml}${badge}</div>
+          <div class="ministry-body">
+            <div class="ministry-icon">${m.emoji}</div>
+            <h3>${m.name}</h3>
+            <p>${d.desc || m.defaultDesc}</p>
+            <button class="ministry-edit-btn" onclick="openPanel('${m.id}')">
+              ✏️ Add Photos &amp; Videos
+            </button>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  function renderThumbs() {
+    const grid = document.getElementById('thumbsGrid');
+    grid.innerHTML = pendingMedia.map((item, i) => {
+      const media = item.type === 'video'
+        ? `<video src="${item.src}" muted></video><span class="thumb-type">VIDEO</span>`
+        : `<img src="${item.src}" alt="media" /><span class="thumb-type">PHOTO</span>`;
+      return `<div class="thumb-item">${media}<button class="thumb-del" onclick="removeMedia(${i})">&#10005;</button></div>`;
+    }).join('');
+  }
+
+  function openPanel(id) {
+    editingId = id;
+    const m = ministries.find(x => x.id === id);
+    const d = cardData[id] || {};
+    document.getElementById('panelMinistryName').textContent = m.name + ' — Media';
+    document.getElementById('panelDesc').value = d.desc || '';
+    pendingMedia = d.media ? [...d.media] : [];
+    document.getElementById('savedMsg').style.display = 'none';
+    renderThumbs();
+    const panel = document.getElementById('mediaPanel');
+    panel.classList.add('open');
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function closePanel() {
+    document.getElementById('mediaPanel').classList.remove('open');
+    editingId = null;
+    pendingMedia = [];
+    document.getElementById('mediaFileInput').value = '';
+  }
+
+  function removeMedia(i) {
+    pendingMedia.splice(i, 1);
+    renderThumbs();
+  }
+
+  function savePanel() {
+    if (!editingId) return;
+    if (!cardData[editingId]) cardData[editingId] = {};
+    cardData[editingId].desc = document.getElementById('panelDesc').value.trim();
+    cardData[editingId].media = [...pendingMedia];
+    renderGrid();
+    const msg = document.getElementById('savedMsg');
+    msg.style.display = 'inline';
+    setTimeout(() => { msg.style.display = 'none'; }, 2000);
+  }
+
+  document.getElementById('mediaFileInput').addEventListener('change', function(e) {
+    const files = Array.from(e.target.files);
+    let loaded = 0;
+    files.forEach(file => {
+      const isVideo = file.type.startsWith('video/');
+      const reader = new FileReader();
+      reader.onload = ev => {
+        pendingMedia.push({ type: isVideo ? 'video' : 'image', src: ev.target.result, name: file.name });
+        loaded++;
+        if (loaded === files.length) renderThumbs();
+      };
+      reader.readAsDataURL(file);
+    });
+    e.target.value = '';
+  });
+
+  renderGrid();
+</script>
+</body>
+</html>
