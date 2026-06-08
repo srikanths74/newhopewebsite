@@ -16,28 +16,52 @@
 
   nav { background: var(--navy); display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; }
   .nav-logo { display: flex; align-items: center; gap: 10px; }
-  .nav-logo .cross { width: 24px; height: 24px; position: relative; }
+  /* .nav-logo .cross { width: 24px; height: 24px; position: relative; }
   .nav-logo .cross::before, .nav-logo .cross::after { content: ''; position: absolute; background: var(--gold); border-radius: 2px; }
   .nav-logo .cross::before { width: 4px; height: 100%; left: 50%; transform: translateX(-50%); }
-  .nav-logo .cross::after { width: 100%; height: 4px; top: 35%; left: 0; }
+  .nav-logo .cross::after { width: 100%; height: 4px; top: 35%; left: 0; } */
+  .nav-logo-img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--gold);
+  box-shadow: 0 0 6px rgba(212,160,23,0.4);
+}
   .nav-logo span { font-family: 'Playfair Display', serif; color: #fff; font-size: 1.1rem; font-weight: 700; }
   .nav-links { display: flex; gap: 1.5rem; list-style: none; }
   .nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
   .nav-links a:hover { color: var(--gold); }
   .nav-cta { background: var(--gold); color: var(--navy); border: none; padding: 0.5rem 1.2rem; border-radius: 50px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
 
-  .hero { min-height: 70vh; background: linear-gradient(145deg, var(--navy) 0%, var(--navy-mid) 60%, #3a5f8a 100%); display: flex; align-items: center; justify-content: center; text-align: center; padding: 4rem 2rem; position: relative; overflow: hidden; }
+ .hero {
+  min-height: 70vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    url('./media/worship.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center; text-align: center; padding: 4rem 2rem; position: relative; overflow: hidden; }
   .hero-bg-circle { position: absolute; border-radius: 50%; background: rgba(201,144,11,0.07); pointer-events: none; }
   .hero-bg-circle:nth-child(1) { width: 500px; height: 500px; top: -180px; right: -180px; }
   .hero-bg-circle:nth-child(2) { width: 350px; height: 350px; bottom: -130px; left: -80px; }
   .hero-content { position: relative; z-index: 1; max-width: 700px; }
-  .hero-badge { display: inline-block; background: rgba(201,144,11,0.18); color: var(--gold-light); border: 1px solid rgba(201,144,11,0.4); font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 0.3rem 1rem; border-radius: 50px; margin-bottom: 1.2rem; }
-  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 1rem; }
-  .hero h1 span { color: var(--gold); }
+  .hero-badge { display: inline-block; background: rgba(195, 183, 53, 0.918); color: var(--gold-light); border: 1px solid rgba(4, 4, 4, 0.949); font-size: 0.72rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 0.3rem 1rem; border-radius: 50px; margin-bottom: 1.2rem; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 900; color: #f1ededdb; line-height: 1.1; margin-bottom: 1rem; }
+  .hero h1 span { color: var(--); }
   .hero-subtitle { font-size: 1rem; color: rgba(255,255,255,0.75); max-width: 500px; margin: 0 auto 2rem; }
   .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
   .btn-primary { background: var(--gold); color: var(--navy); border: none; padding: 0.75rem 2rem; border-radius: 50px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.95rem; cursor: pointer; }
-  .btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.5); padding: 0.75rem 2rem; border-radius: 50px; font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 0.95rem; cursor: pointer; }
+  .btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(235, 226, 226, 0.885); padding: 0.75rem 2rem; border-radius: 50px; font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 0.95rem; cursor: pointer; }
 
   .service-strip { background: var(--gold); display: flex; justify-content: center; flex-wrap: wrap; }
   .service-item { padding: 0.9rem 1.4rem; border-right: 1px solid rgba(26,42,74,0.2); text-align: center; }
@@ -171,10 +195,15 @@
 <body>
 
 <nav>
-  <div class="nav-logo">
+  <!-- <div class="nav-logo">
     <div class="cross"></div>
     <span>New Hope Church</span>
-  </div>
+  </div> -->
+  <div class="nav-logo">
+  <img src="./media/logod.jpg" alt="Logo" class="nav-logo-img">
+  <span>New Hope Church</span>
+</div>
+  
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#ministries">Ministries</a></li>
@@ -185,8 +214,8 @@
 </nav>
 
 <section class="hero">
-  <div class="hero-bg-circle"></div>
-  <div class="hero-bg-circle"></div>
+  <!-- <div class="hero-bg-circle"></div>
+  <div class="hero-bg-circle"></div> -->
   <div class="hero-content">
     <div class="hero-badge">Welcome To</div>
     <h1>Find <span>Hope</span>,<br>Build Community</h1>
