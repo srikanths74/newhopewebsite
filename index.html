@@ -444,13 +444,44 @@
   footer .footer-logo { font-family: 'Playfair Display', serif; color: #fff; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
   footer a { color: var(--gold); text-decoration: none; }
 
-.nav-cta{
-  width: 100%;
-  max-width: 220px;
-  text-align: center;
+  @media (max-width: 768px){
+
+  nav{
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  /* SHOW MENU LINKS IN PHONE */
+  .nav-links{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+
+  .nav-links a{
+    font-size: 0.82rem;
+  }
+
+  /* BUTTON */
+  .nav-cta{
+    width: 100%;
+    max-width: 220px;
+    text-align: center;
+  }
+
+  /* SECTIONS */
+  .about-grid,
+  .connect-grid{
+    grid-template-columns: 1fr;
+  }
 }
-.nav-cta{
-  display: none;
+@media (max-width: 768px){
+  .nav-cta{
+    display: none;
+  }
 }
 </style>
 </head>
