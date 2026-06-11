@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,76 +7,6 @@
 <title>New Hope Church</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  
-  .gallery{
-  background: var(--warm-white);
-  padding: 4rem 2rem;
-}
-
-.gallery-grid{
-  display:grid;
-  grid-template-columns:
-  repeat(auto-fit,minmax(220px,1fr));
-
-  gap:1rem;
-  margin-top:2rem;
-}
-
-.gallery-grid img{
-  width:100%;
-  height:250px;
-  object-fit:cover;
-  border-radius:18px;
-
-  transition:0.4s ease;
-}
-
-.gallery-grid img:hover{
-  transform:scale(1.04);
-}
- .verse-slider{
-  margin-top: 2rem;
-  color: rgba(255,255,255,0.9);
-  font-size: 1.5rem;
-  font-style: italic;
-  font-family: 'Playfair Display', serif;
-  min-height: 30px;
-
-  animation: fadeVerse 1s ease;
-}
-
-@keyframes fadeVerse{
-
-  from{
-    opacity:0;
-    transform:translateY(10px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-} 
-.hero::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:
-  radial-gradient(circle at top right,
-  rgba(201,144,11,0.18),
-  transparent 40%);
-}
-  .ministry-card:hover{
-  border-color: var(--gold);
-}
-  .ministry-media::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  background: linear-gradient(to top,
-  rgba(0,0,0,0.45),
-  transparent);
-}
   /* LOADER SCREEN */
 #loader{
   position: fixed;
@@ -456,7 +387,7 @@
   .nav-cta { background: var(--gold); color: var(--navy); border: none; padding: 0.5rem 1.2rem; border-radius: 50px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
 
  .hero {
-  min-height: 100vh;
+  min-height: 70vh;
   background:
     linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
     url('./media/chuurch.jpeg');
@@ -598,7 +529,7 @@
   .connect-form textarea { min-height: 110px; resize: vertical; }
   .connect-form button { align-self: flex-start; background: var(--navy); color: #fff; border: none; padding: 0.75rem 2rem; border-radius: 50px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.95rem; cursor: pointer; }
   .connect-info { display: flex; flex-direction: column; gap: 1.3rem; margin-top: 0.5rem; }
-  .info-item { display: flex; gap: 1rem; align-items: center; }
+  .info-item { display: flex; gap: 1rem; align-items: flex-start; }
   .info-icon { min-width: 42px; height: 42px; border-radius: 12px; background: var(--gold-light); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
   .info-item strong { display: block; color: var(--navy); font-size: 0.88rem; margin-bottom: 2px; }
   .info-item span { font-size: 0.84rem; color: var(--text-muted); }
@@ -694,9 +625,6 @@
     <div class="hero-buttons">
       <button class="btn-primary">Join Us On Sunday</button>
     </div>
-    <div class="verse-slider" id="verseSlider">
-  "God is our refuge and strength." — Psalm 46:1
-</div>
   </div>
 </section>
 
@@ -780,40 +708,6 @@
     </div> -->
   <!-- </div>
 </section> -->
-</section>
-
-<!-- GALLERY SECTION -->
-<section class="gallery reveal">
-
-  <div class="container">
-
-    <div class="ministries-header">
-      <div class="section-tag">Moments</div>
-
-      <h2 class="section-title">
-        Church Gallery
-      </h2>
-
-      <p class="section-body">
-        Beautiful memories from worship,
-        fellowship, and outreach.
-      </p>
-    </div>
-
-    <div class="gallery-grid">
-
-      <img src="./media/children.jpeg">
-      <img src="./media/service.jpeg">
-      <img src="./media/familychurch.jpeg">
-      <img src="./media/carols.jpeg">
-
-    </div>
-
-  </div>
-
-</section>
-
-<div class="quote-section">
 
 <div class="quote-section">
   <div class="quote-mark">"</div>
@@ -894,7 +788,8 @@
       </div>
       <div class="connect-info">
         <div class="info-item"><div class="info-icon">📍</div><div><strong>Address</strong><span>7, Annai Theresa St, Devanesan Nagar, New Perungalathur, Chennai, Tamil Nadu 600063</span></div></div>
-        <div class="info-item"><div class="info-icon">📞</div><div><strong>Phone</strong><span>+91 98840 49797 <br> +91 98847 09292</span></div></div>
+        <div class="info-item"><div class="info-icon">📞</div><div><strong>Phone</strong><span>+91 98840 49797<br>
+          +91 98847 09292</span></div></div>
             <div class="mini-socials">
               
               <a href="https://www.instagram.com/newhope_official__?igsh=OWI1ZXZiY2xubDN2">Instagram</a>
@@ -1010,6 +905,13 @@
     });
     e.target.value = '';
   });
+
+
+
+
+
+
+
  renderGrid();
  window.addEventListener('load', () => {
 
@@ -1019,43 +921,6 @@
   }, 1800);
 
 });
-const verses = [
-
-'"God is our refuge and strength." — Psalm 46:1',
-
-'"With God all things are possible." — Matthew 19:26',
-
-'"The Lord is my shepherd." — Psalm 23:1',
-
-'"Be strong and courageous." — Joshua 1:9',
-
-'"I can do all things through Christ." — Philippians 4:13'
-
-];
-
-let verseIndex = 0;
-
-setInterval(() => {
-
-  verseIndex++;
-
-  if(verseIndex >= verses.length){
-    verseIndex = 0;
-  }
-
-  const verse = document.getElementById("verseSlider");
-
-  verse.style.opacity = 0;
-
-  setTimeout(() => {
-
-    verse.innerHTML = verses[verseIndex];
-
-    verse.style.opacity = 1;
-
-  }, 400);
-
-}, 4000);
 </script>
 </body>
 </html>
