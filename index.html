@@ -6,6 +6,264 @@
 <title>New Hope Church</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+  section{
+  animation: fadeUp 1s ease;
+}
+
+@keyframes fadeUp{
+  from{
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+  .btn-primary:hover{
+  box-shadow: 0 12px 30px rgba(201,144,11,0.4);
+}
+  html{
+  scroll-behavior: smooth;
+}
+  /* SMOOTH FLOAT EFFECT */
+.ministry-card{
+  transition: all 0.4s ease;
+  animation: floatSoft 5s ease-in-out infinite;
+}
+
+/* DIFFERENT TIMING */
+.ministry-card:nth-child(2){
+  animation-delay: 1s;
+}
+
+.ministry-card:nth-child(3){
+  animation-delay: 2s;
+}
+
+.ministry-card:nth-child(4){
+  animation-delay: 3s;
+}
+
+/* SOFT FLOAT */
+@keyframes floatSoft{
+  0%{
+    transform: translateY(0px);
+  }
+
+  50%{
+    transform: translateY(-6px);
+  }
+
+  100%{
+    transform: translateY(0px);
+  }
+}
+
+/* PREMIUM HOVER */
+.ministry-card:hover{
+  transform: translateY(-10px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+}
+
+/* IMAGE ZOOM */
+.ministry-media img{
+  transition: transform 0.5s ease;
+}
+
+.ministry-card:hover .ministry-media img{
+  transform: scale(1.06);
+}
+  /* CONNECT SECTION PREMIUM ANIMATION */
+.connect-grid{
+  animation: connectFade 1.2s ease;
+}
+
+@keyframes connectFade{
+  from{
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* FORM BOX */
+.connect-form{
+  background: rgba(255,255,255,0.78);
+  padding: 2rem;
+  border-radius: 24px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(201,144,11,0.15);
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* INFO BOX */
+.connect-info{
+  background: rgba(255,255,255,0.78);
+  padding: 2rem;
+  border-radius: 24px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(201,144,11,0.15);
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* HOVER EFFECT */
+.connect-form:hover,
+.connect-info:hover{
+  transform: translateY(-10px);
+  box-shadow: 0 22px 45px rgba(0,0,0,0.12);
+}
+
+/* INPUT ANIMATION */
+.connect-form input,
+.connect-form textarea{
+  transition: all 0.3s ease;
+}
+
+.connect-form input:focus,
+.connect-form textarea:focus{
+  transform: scale(1.02);
+  box-shadow: 0 0 12px rgba(201,144,11,0.2);
+}
+
+/* BUTTON EFFECT */
+.connect-form button{
+  transition: all 0.3s ease;
+}
+
+.connect-form button:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.18);
+}
+  .mini-socials{
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.mini-socials a{
+  text-decoration: none;
+  background: var(--gold-light);
+  color: var(--navy);
+  padding: 7px 14px;
+  border-radius: 30px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.mini-socials a:hover{
+  background: var(--gold);
+  color: white;
+  transform: translateY(-2px);
+}
+  .cheerful-text{
+  display: block;
+  margin-top: 14px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+  /* OFFERING */
+.offering {
+  background: var(--warm-white);
+  padding: 4rem 2rem;
+}
+
+.offering-box {
+  background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+  border-radius: 24px;
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  color: #fff;
+  overflow: hidden;
+}
+
+.offering .section-title {
+  color: #fff;
+}
+
+.offering .section-body {
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 1.5rem;
+}
+
+.bank-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bank-item {
+  background: rgba(255,255,255,0.08);
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.bank-item strong {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.bank-item span {
+  font-size: 0.92rem;
+  color: #fff;
+}
+
+.qr-section {
+  text-align: center;
+}
+
+.qr-section img {
+  width: 230px;
+  height: 230px;
+  object-fit: cover;
+  background: #fff;
+  padding: 12px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.qr-section p {
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+@media (max-width: 768px) {
+  .offering-box {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .bank-item {
+    text-align: left;
+  }
+
+  .qr-section img {
+    width: 200px;
+    height: 200px;
+  }
+}
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --gold: #C9900B; --gold-light: #F5E6C0; --cream: #FDF8F0;
@@ -38,7 +296,7 @@
   min-height: 70vh;
   background:
     linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-    url('./media/worship.jpg');
+    url('./media/chuurch.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -186,10 +444,40 @@
   footer .footer-logo { font-family: 'Playfair Display', serif; color: #fff; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
   footer a { color: var(--gold); text-decoration: none; }
 
-  @media (max-width: 650px) {
-    .nav-links { display: none; }
-    .about-grid, .connect-grid { grid-template-columns: 1fr; }
+  @media (max-width: 768px){
+
+  nav{
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
   }
+
+  /* SHOW MENU LINKS IN PHONE */
+  .nav-links{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+
+  .nav-links a{
+    font-size: 0.82rem;
+  }
+
+  /* BUTTON */
+  .nav-cta{
+    width: 100%;
+    max-width: 220px;
+    text-align: center;
+  }
+
+  /* SECTIONS */
+  .about-grid,
+  .connect-grid{
+    grid-template-columns: 1fr;
+  }
+}
 </style>
 </head>
 <body>
@@ -207,10 +495,13 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#ministries">Ministries</a></li>
-    <li><a href="#events">Events</a></li>
+    <!-- <li><a href="#events">Events</a></li> -->
+    <li><a href="#offering">Offering</a></li>
     <li><a href="#connect">Connect</a></li>
+   <a href="#timings" class="nav-cta">Plan Your Visit</a>
   </ul>
-  <button class="nav-cta">Plan Your Visit</button>
+ 
+  
 </nav>
 
 <section class="hero">
@@ -221,12 +512,12 @@
     <h1>Find <span>Hope</span>,<br>Build Community</h1>
     <p class="hero-subtitle">A vibrant, welcoming family where every person belongs. Join us as we grow together in faith, love, and purpose.</p>
     <div class="hero-buttons">
-      <button class="btn-primary">Join Us Sunday</button>
+      <button class="btn-primary">Join Us On Sunday</button>
     </div>
   </div>
 </section>
 
-<div class="service-strip">
+<div class="service-strip" id="timings">
   <div class="service-item"><div class="day">Sunday Service</div><div class="time">8:30 AM – 11:00 AM</div></div>
   <div class="service-item"><div class="day">Sunday Bible Class (SBC)</div><div class="time">3:00 PM – 5:00 PM</div></div>
   <div class="service-item"><div class="day">Wednesday Youth Fellowship</div><div class="time">8:00 PM – 9:30 PM</div></div>
@@ -312,21 +603,73 @@
   <p class="quote-text">For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.</p>
   <div class="quote-ref">Jeremiah 29:11</div>
 </div>
+<!-- OFFERING SECTION -->
+<section class="offering" id="offering">
+  <div class="container">
+    <div class="offering-box">
+      
+      <div class="offering-content">
+        <div class="section-tag">Give & Support</div>
+        <h2 class="section-title">Offerings & Tithes</h2>
 
+        <p class="section-body">
+          Your generous giving helps us continue ministry, outreach,
+          worship services, and community support. Thank you for partnering with us
+          <br>
+          <span class="cheerful-text">"...God loves a cheerful giver" </span>
+         
+        </p>
+
+        <div class="bank-details">
+          <div class="bank-item">
+            <strong>Account Name</strong>
+            <span>Newhope Ministries</span>
+          </div>
+
+          <div class="bank-item">
+            <strong>Bank Name</strong>
+            <span> Indian Bank </span>
+          </div>
+
+          <div class="bank-item">
+            <strong>Account Number</strong>
+            <span> 7952699141</span>
+          </div>
+
+          <div class="bank-item">
+            <strong>IFSC Code</strong>
+            <span>IDIB000T004</span>
+          </div>
+
+          <div class="bank-item">
+            <strong>UPI ID</strong>
+            <span>newhopechurch@upi</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="qr-section">
+        <img src="./media/qr-code.jpeg" alt="Offering QR Code">
+        <p>Scan and Send Your Offering</p>
+      </div>
+
+    </div>
+  </div>
+</section>
 <section class="connect" id="connect">
   <div class="container">
     <div class="connect-grid">
       <div>
         <div class="section-tag">Get in Touch</div>
         <h2 class="section-title">We'd Love to Hear from You</h2>
-        <p class="section-body" style="margin-bottom:1.5rem">Have a question or want to know more? Reach out and we'll get back to you.</p>
+        <p class="section-body" style="margin-bottom:1.5rem">If you have prayer request or want to know more? Reach out and we'll get back to you.</p>
               <form class="connect-form" action="https://formsubmit.co/srikanthstephen2007@gmail.com" method="POST">
 
-        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="text" name="name" placeholder=" Name" required>
 
-        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="number" name="Number" placeholder="Number" required>
 
-        <textarea name="message" placeholder="Your Message" required></textarea>
+        <textarea name="message" placeholder=" Prayer request / Testimony" required></textarea>
 
         <button type="submit">Send Message</button>
 
@@ -334,7 +677,13 @@
       </div>
       <div class="connect-info">
         <div class="info-item"><div class="info-icon">📍</div><div><strong>Address</strong><span>7, Annai Theresa St, Devanesan Nagar, New Perungalathur, Chennai, Tamil Nadu 600063</span></div></div>
-        <div class="info-item"><div class="info-icon">📞</div><div><strong>Phone</strong><span>+91 98840 49797</span></div></div>
+        <div class="info-item"><div class="info-icon">📞</div><div><strong>Phone</strong><span>+91 98840 49797<br>
+          +91 98847 09292</span></div></div>
+            <div class="mini-socials">
+              
+              <a href="https://www.instagram.com/newhope_official__?igsh=OWI1ZXZiY2xubDN2">Instagram</a>
+              <a href="https://youtube.com/@newhopechurchperungalathur?si=EuCPBZUp-YlojS-9">YouTube</a>
+             </div>
         <!-- <div class="info-item"><div class="info-icon">✉️</div><div><strong>Email</strong><span>hello@newhopechurch.org</span></div></div>
         <div class="info-item"><div class="info-icon">🕐</div><div><strong>Office Hours</strong><span>Mon – Fri, 9:00 AM – 5:00 PM</span></div></div> -->
       </div>
