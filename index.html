@@ -513,6 +513,15 @@
   .nav-links a:hover { color: var(--gold); }
   .nav-cta { background: var(--gold); color: var(--navy); border: none; padding: 0.5rem 1.2rem; border-radius: 50px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
 
+  /* keep CTA visible when focused/active */
+  .nav-cta:focus,
+  .nav-cta:active {
+    outline: none;
+    box-shadow: none;
+    background: var(--gold);
+    color: var(--navy);
+  }
+
  .hero {
   min-height: 100vh;
   background:
@@ -701,7 +710,10 @@
 }
 @media (max-width: 768px){
   .nav-cta{
-    display: none !important;
+    display: block !important;
+    width: 100%;
+    max-width: 220px;
+    text-align: center;
   }
 }
 
@@ -736,7 +748,7 @@
     <!-- <li><a href="#events">Events</a></li> -->
     <li><a href="#offering">Offering</a></li>
     <li><a href="#connect">Connect</a></li>
-   <a href="#timings" class="nav-cta">Plan Your Visit</a>
+    <li><a href="#timings" class="nav-cta">Plan Your Visit</a></li>
   </ul>
  
   
@@ -842,7 +854,7 @@
 </section>
 
 <!-- GALLERY SECTION -->
-<section class="gallery reveal">
+<!-- <section class="gallery reveal">
 
   <div class="container">
 
@@ -871,7 +883,7 @@
   </div>
 
 </section>
-
+ -->
 
 
 <div class="quote-section">
@@ -976,15 +988,19 @@
 
 <script>
   const ministries = [
-    { id: 'children', emoji: '👶', name: "Children's Ministry", defaultDesc: "Worship, snacks, faith-filled experiences for kids ages 0–17 during every service." },
-    { id: 'youth',    emoji: '🔥', name: "Youth Fellowship",    defaultDesc: "An energetic community where youths discover God's word, identity, purpose, and friendship." },
-    { id: 'worship',  emoji: '🎵', name: "Worship Arts",        defaultDesc: "Express your gifts through music, creative arts, and technical production." },
-    { id: 'outreach', emoji: '🤝', name: "Community Outreach",  defaultDesc: "Serving our city through food drives, mentorship, and local partnerships." }
+    { id: 'children', emoji: '👶', name: "Children's Ministry", photo: './media/children.jpeg', defaultDesc: "Worship, snacks, faith-filled experiences for kids ages 0–17 during every service." },
+    { id: 'youth',    emoji: '🔥', name: "Youth Fellowship",    photo: './media/carols.jpeg',   defaultDesc: "An energetic community where youths discover God's word, identity, purpose, and friendship." },
+    { id: 'worship',  emoji: '🎵', name: "Worship Arts",        photo: './media/service.jpeg',  defaultDesc: "Express your gifts through music, creative arts, and technical production." },
+    { id: 'outreach', emoji: '🤝', name: "Community Outreach",  photo: './media/familychurch.jpeg', defaultDesc: "Serving our city through food drives, mentorship, and local partnerships." }
   ];
 
   let cardData = {};
   let editingId = null;
   let pendingMedia = [];
+
+  function goToConnect() {
+    document.getElementById('connect').scrollIntoView({ behavior: 'smooth' });
+  }
 
   function renderGrid() {
     const grid = document.getElementById('ministriesGrid');
@@ -992,19 +1008,23 @@
       const d = cardData[m.id] || {};
       const media = d.media || [];
       const first = media[0];
-      
-      let mediaHtml = `<span>${m.emoji}</span>`;
-      if (first && first.type === 'image') mediaHtml = `<img src="${first.src}" alt="${m.name}" />`;
-      else if (first && first.type === 'video') mediaHtml = `<video src="${first.src}" muted></video>`;
-      const badge = media.length > 0 ? `<span class="media-count-badge">${media.length} file${media.length > 1 ? 's' : ''}</span>` : '';
+
+      let mediaHtml;
+      if (first && first.type === 'image') {
+        mediaHtml = `<img src="${first.src}" alt="${m.name}" />`;
+      } else if (first && first.type === 'video') {
+        mediaHtml = `<video src="${first.src}" muted></video>`;
+      } else {
+        mediaHtml = `<img src="${m.photo}" alt="${m.name}" />`;
+      }
+
       return `
-        <div class="ministry-card">
-          <div class="ministry-media" onclick="openPanel('${m.id}')">${mediaHtml}${badge}</div>
+        <div class="ministry-card" onclick="goToConnect()" style="cursor:pointer;">
+          <div class="ministry-media">${mediaHtml}</div>
           <div class="ministry-body">
             <div class="ministry-icon">${m.emoji}</div>
             <h3>${m.name}</h3>
             <p>${d.desc || m.defaultDesc}</p>
-
           </div>
         </div>`;
     }).join('');
@@ -1118,6 +1138,17 @@ setInterval(() => {
   }, 400);
 
 }, 4000);
+
+// Smooth-scroll Plan Your Visit without changing the URL hash
+(function(){
+  const planLink = document.querySelector('.nav-cta');
+  if(!planLink) return;
+  planLink.addEventListener('click', function(e){
+    e.preventDefault();
+    const target = document.getElementById('timings');
+    if(target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+})();
 </script>
 </body>
 </html>
